@@ -1,20 +1,31 @@
 {
-  "name": "Monorepo Dev",
+  "name": "Prod-like Monorepo",
   "dockerComposeFile": [
     "../docker-compose.yml"
   ],
   "service": "api-node",
   "workspaceFolder": "/app",
-  "postCreateCommand": "npm install",
+  "shutdownAction": "stopCompose",
+
+  "features": {},
+
   "customizations": {
     "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        "files.trimTrailingWhitespace": true
+      },
       "extensions": [
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
         "ms-python.python",
-        "charliermarsh.ruff"
+        "ms-azuretools.vscode-docker"
       ]
     }
   },
-  "remoteUser": "app"
+
+  "remoteUser": "app",
+  "updateRemoteUserUID": true,
+
+  "postCreateCommand": "npm install"
 }
