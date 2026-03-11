@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Run linters
+        run: |
+          pip install pre-commit
+          pre-commit run --all-files
+
+      - name: Build containers
+        run: docker compose build
+
+      - name: Run tests
+        run: |
+          docker compose run --rm api-node npm test
+          docker compose run --rm api-python pytest
