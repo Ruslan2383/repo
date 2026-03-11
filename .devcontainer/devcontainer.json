@@ -29,3 +29,8 @@
 
   "postCreateCommand": "npm install"
 }
+{
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "api-node-dev",
+  "workspaceFolder": "/app"
+}
