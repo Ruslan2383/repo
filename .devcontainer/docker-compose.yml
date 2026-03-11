@@ -1,0 +1,18 @@
+services:
+  api-node:
+    build:
+      context: ./backend/node-service
+      target: runtime   # чистый прод-рантайм
+    environment:
+      NODE_ENV: production
+
+  api-node-dev:
+    build:
+      context: ./backend/node-service
+      target: dev       # dev-стадия из Dockerfile
+    volumes:
+      - ./backend/node-service:/app
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
